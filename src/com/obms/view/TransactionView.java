@@ -14,11 +14,11 @@ import com.obms.controller.TransactionController;
 import com.obms.model.Transaction;
 
 public class TransactionView {
-
+	//private static final Logger logger = LogManager.getLogger(TransactionView.class);
 	final static Logger logger=Logger.getLogger(CustomerView.class.getName());
 	
 	
-
+	//To show the Transaction related crud operations performed
 	public int transactionview() throws Exception {
 
 		//BasicConfigurator.configure();
@@ -55,6 +55,7 @@ public class TransactionView {
 
 			switch (choice) {
 			case 1:
+				//To insert a record
 				logger.info("Enter Transaction_Id,Amount, Transac_Date, Sender,Receiver,Transac_Type,Accnt_No");
 				Transaction_Id = sc.nextInt();
 				sc.nextLine();
@@ -74,6 +75,7 @@ public class TransactionView {
 					logger.info("Record not inserted");
 				break;
 			case 2:
+				//To update a record
 				logger.info("Enter Transaction_Id,Amount, Transac_Date, Sender,Receiver,Transac_Type,Accnt_No");
 				Transaction_Id = sc.nextInt();
 				sc.nextLine();
@@ -95,6 +97,7 @@ public class TransactionView {
 				break;
 
 			case 3:
+				//To delete a record
 				logger.info("Enter transactionid");
 				Transaction_Id = sc.nextInt();
 				result = transactionctrl.deleteRecord(Transaction_Id);
@@ -103,7 +106,9 @@ public class TransactionView {
 				else
 					logger.info("Record not found");
 				break;
+				
 			case 4:
+				//To view all record
 				List<Transaction> list = transactionctrl.getAllRecords();
 				if (list.size() == 0)
 					logger.info("No record found");
@@ -116,6 +121,7 @@ public class TransactionView {
 
 				
 			case 5:
+				//To view a particular record
 				logger.info("Enter Transaction_Id");
 				Transaction_Id = sc.nextInt();
 				Transaction = transactionctrl.getTransactionByTransaction_Id(Transaction_Id);

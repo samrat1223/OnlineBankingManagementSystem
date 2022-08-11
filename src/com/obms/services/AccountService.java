@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.obms.model.Account;
-import com.obms.services.AccountConnection;
+import com.obms.services.DatabaseConnection;
 
 // Account related operation performed here 
 public class AccountService implements AccountCrud {
@@ -19,8 +19,8 @@ public class AccountService implements AccountCrud {
 
 		int result = 0;
 		try {
-			Connection con = AccountConnection.getConnection();
-			// java.sql.Date opd=new java.sql.Date(account.getOpening_Date().getTime());
+			Connection con = DatabaseConnection.getConnection();
+			
 			// To insert records
 			PreparedStatement ps = con.prepareStatement(
 					"insert into account(Accnt_No,Accnt_Type,Accnt_Balance,IFSC_Code,Opening_Date,Branch_Name,Branch_Code,Cust_ID,Cust_NomineeName) values(?,?,?,?,?,?,?,?,?)");
@@ -49,8 +49,8 @@ public class AccountService implements AccountCrud {
 
 		int result = 0;
 		try {
-			Connection con = AccountConnection.getConnection();
-			// java.sql.Date opd=new java.sql.Date(account.getOpening_Date().getTime());
+			Connection con = DatabaseConnection.getConnection();
+			 
 			// To insert records
 			PreparedStatement ps = con.prepareStatement(
 					"update account set Accnt_Type=?,Accnt_Balance=?, IFSC_Code=?, Opening_Date=?, Branch_Name=?, Branch_Code=?, Cust_ID =?, Cust_NomineeName=? where Accnt_No=?");
@@ -81,7 +81,7 @@ public class AccountService implements AccountCrud {
 
 		int result = 0;
 		try {
-			Connection con = AccountConnection.getConnection();
+			Connection con = DatabaseConnection.getConnection();
 			PreparedStatement ps = con.prepareStatement("delete from account where Accnt_No=?");
 
 			ps.setLong(1, Accnt_No);
@@ -99,7 +99,7 @@ public class AccountService implements AccountCrud {
 	public List<Account> getAllRecords() {
 		ArrayList<Account> list = new ArrayList<>();
 		try {
-			Connection con = AccountConnection.getConnection();
+			Connection con = DatabaseConnection.getConnection();
 			// To get all Records
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery("select * from account");
@@ -126,7 +126,7 @@ public class AccountService implements AccountCrud {
 	public Account getAccountByAccno(long Accnt_No) {
 		Account account = null;
 		try {
-			Connection con = AccountConnection.getConnection();
+			Connection con = DatabaseConnection.getConnection();
 			PreparedStatement ps = con.prepareStatement("Select * from account where Accnt_No=?");
 			ps.setLong(1, Accnt_No);
 			ResultSet rs = ps.executeQuery();

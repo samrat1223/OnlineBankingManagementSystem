@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.obms.model.Customer;
-import com.obms.services.CustomerConnection;
+import com.obms.services.DatabaseConnection;
 
 // Service class to implement crud operations
 public class CustomerService implements CustomerCrud {
@@ -16,7 +16,7 @@ public class CustomerService implements CustomerCrud {
 
 		int result = 0;
 		try {
-			Connection con = CustomerConnection.getConnection();
+			Connection con = DatabaseConnection.getConnection();
 			// java.sql.Date Cust_dob=new java.sql.Date(customer.getCust_DOB().getTime());
 			PreparedStatement ps = con.prepareStatement(
 					"insert into customer(Cust_ID,Cust_Name,Cust_Aadharno,Cust_Address,Cust_Panno,Cust_Email,Cust_Password,Cust_MobileNo,Cust_PinCode,Cust_State,User_Name,Cust_DOB,Accnt_No,Cust_NomineeName) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?);");
@@ -49,7 +49,7 @@ public class CustomerService implements CustomerCrud {
 	public int updateRecord(Customer customer) {
 		int result = 0;
 		try {
-			Connection con = CustomerConnection.getConnection();
+			Connection con = DatabaseConnection.getConnection();
 			// java.sql.Date Cust_dob=new java.sql.Date(customer.getCust_DOB().getString());
 			PreparedStatement ps = con.prepareStatement(
 					"update customer set Cust_Name=?,Cust_Aadharno=?,Cust_Address=?,Cust_Panno=?,Cust_Email=?,Cust_Password=?,Cust_MobileNo=?,Cust_PinCode=?,Cust_State=?,User_Name=?,Cust_DOB=?,Accnt_No=?,Cust_NomineeName=? where Cust_ID=?");
@@ -81,7 +81,7 @@ public class CustomerService implements CustomerCrud {
 	public int deleteRecord(int Cust_ID) {
 		int result = 0;
 		try {
-			Connection con = CustomerConnection.getConnection();
+			Connection con = DatabaseConnection.getConnection();
 			PreparedStatement ps = con.prepareStatement("delete from customer where Cust_ID=?");
 
 			ps.setInt(1, Cust_ID);
@@ -99,7 +99,7 @@ public class CustomerService implements CustomerCrud {
 	public List<Customer> getAllRecords() {
 		ArrayList<Customer> list = new ArrayList<>();
 		try {
-			Connection con = CustomerConnection.getConnection();
+			Connection con = DatabaseConnection.getConnection();
 
 			String sql = "select * from customer";
 			// To get all Records
@@ -146,7 +146,7 @@ public class CustomerService implements CustomerCrud {
 
 		Customer cust = null;
 		try {
-			Connection con = CustomerConnection.getConnection();
+			Connection con = DatabaseConnection.getConnection();
 			PreparedStatement ps = con.prepareStatement("Select * from customer where Cust_ID=?");
 			ps.setInt(1, Cust_ID);
 			ResultSet rs = ps.executeQuery();

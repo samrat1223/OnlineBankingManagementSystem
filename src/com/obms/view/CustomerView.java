@@ -14,10 +14,10 @@ import com.obms.controller.CustomerController;
 import com.obms.model.Customer;
 
 public class CustomerView {
-	
+	//private static final Logger logger = LogManager.getLogger(CustomerView.class);
 	final static Logger logger=Logger.getLogger(CustomerView.class.getName());
 	
-	
+	////To show the customer related crud operations performed
 	public static int customerview() throws Exception {
 		
 		
@@ -55,6 +55,7 @@ public class CustomerView {
             choice = sc.nextInt();
             switch (choice) {
     		case 1:
+    			//To insert a record
     			logger.info("Enter the Cust_ID,Cust_Name,Cust_Aadharno,Cust_Address,Cust_Panno,Cust_Email,Cust_Password,Cust_MobileNo,Cust_PinCode,Cust_State,User_Name,Cust_DOB,Accnt_No,Cust_NomineeName");
     			Cust_ID= sc.nextInt();
     			sc.nextLine();
@@ -96,6 +97,7 @@ public class CustomerView {
     			break;
     			
     		case 2:
+    			//To update a record
     			logger.info("Enter the Cust_ID,Cust_Address,Cust_Name,Cust_Password,Cust_Aadharno,Cust_Panno,Cust_Email,Cust_MobileNo,Cust_PinCode,Cust_State,User_Name,Cust_NomineeName,Cust_DOB,Accnt_No");
     			Cust_ID= sc.nextInt();
     			sc.nextLine();
@@ -131,6 +133,7 @@ public class CustomerView {
     			break;
 
 		case 3:
+			//To delete a record
 			logger.info("Enter the Cust_ID");
 			Cust_ID= sc.nextInt();
 			result = customerctrl.deleteRecord(Cust_ID);
@@ -141,6 +144,7 @@ public class CustomerView {
 			break;
 			
 		case 4:
+			//To View all records
 			List<Customer> list= customerctrl.getAllRecords();
 			
 		if(list.size()==0)
@@ -158,6 +162,7 @@ public class CustomerView {
 		break;
 		
 		case 5:
+			//To View a particular record
 			logger.info("Enter Cust_ID");
 			Cust_ID=sc.nextInt();
 			customer=customerctrl.getCustomerByCust_ID(Cust_ID);

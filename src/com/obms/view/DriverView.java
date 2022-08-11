@@ -10,10 +10,10 @@ import java.util.logging.Logger;
 import com.obms.controller.DriverController;
 
 public class DriverView {
-	
+	//private static final Logger logger = LogManager.getLogger(DriverView.class);
 	final static Logger logger=Logger.getLogger(DriverView.class.getName());
 	
-	
+	//To show the Driver related crud operations performed
       public int driverview() throws Exception{
     	  
     	 // BasicConfigurator.configure();

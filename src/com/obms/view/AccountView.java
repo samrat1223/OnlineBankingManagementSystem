@@ -6,9 +6,8 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
-//import org.apache.log4j.BasicConfigurator;
-//import org.apache.log4j.LogManager;
-//import org.apache.log4j.Logger;
+
+
 
 
 
@@ -17,13 +16,12 @@ import com.obms.model.Account;
 
 public class AccountView {
 	
-	 //private static final Logger logger = LogManager.getLogger(AccountView.class);
-	final static Logger logger=Logger.getLogger(AccountView.class.getName());
 	 
+	final static Logger logger=Logger.getLogger(AccountView.class.getName());
+	
+	
+	 //To show the account related crud operations performed
 	public int accountview() throws Exception {
-		
-		
-		
 		
 		AccountController accountctrl = new AccountController();
 		int result;
@@ -44,7 +42,6 @@ public class AccountView {
 		boolean ch=true;
 		while(ch){
 		logger.info("1. Add Record");
-		//logger.setAdditivity(false);
 		logger.info("2. Update Record");
 		logger.info("3. Delete Record");
 		logger.info("4. View Records");
@@ -56,6 +53,7 @@ public class AccountView {
 		
 		switch (choice) {
 		case 1:
+			//To insert a record
 			logger.info("Enter Accnt_No,Accnt_Type,Accnt_Balance,IFSC_Code,Opening_Date,Branch_Name,Branch_Code,Cust_ID,Cust_NomineeName");
 			Accnt_No = sc.nextLong();
 			sc.nextLine();
@@ -65,7 +63,7 @@ public class AccountView {
 			sc.nextLine();
 			IFSC_Code=sc.next();
 			sc.nextLine();
-			Opening_Date = sc.next(); //new SimpleDateFormat("yyyy-MM-dd").parse(sc.next());
+			Opening_Date = sc.next(); 
 			sc.nextLine();
 			Branch_Name = sc.next();
 			sc.nextLine();
@@ -85,6 +83,7 @@ public class AccountView {
 			break;
 			
 		case 2:
+			//To update a record
 			logger.info("Enter Accnt_No,Accnt_Type,Accnt_Balance,IFSC_Code,Opening_Date,Branch_Name,Branch_Code,Cust_NomineeName,Cust_ID");
 			Accnt_No = sc.nextLong();
 			sc.nextLine();
@@ -93,7 +92,7 @@ public class AccountView {
 			sc.nextLine();
 			IFSC_Code=sc.next();
 			sc.nextLine();
-			Opening_Date = sc.next();//new SimpleDateFormat("yyyy-MM-dd").parse(sc.next());
+			Opening_Date = sc.next();
 			sc.nextLine();
 			Branch_Name = sc.next();
 			sc.nextLine();
@@ -114,6 +113,7 @@ public class AccountView {
 			break;
 			
 		case 3:
+			//To delete a record
 			logger.info("Enter accno");
 			Accnt_No = sc.nextLong();
 			result = accountctrl.deleteRecord(Accnt_No);
@@ -124,6 +124,7 @@ public class AccountView {
 			break;
 			
 		case 4:
+			//To View all records
 			List<Account> list=accountctrl.getAllRecords();
 			if(list.size()==0)
 			{
@@ -139,6 +140,7 @@ public class AccountView {
 			break;
 		
 		case 5:
+			//To View a particular record
 			logger.info("Enter accno");
 			Accnt_No=sc.nextLong();
 			account=accountctrl.getAccountByAccno(Accnt_No);

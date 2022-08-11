@@ -10,11 +10,11 @@ import java.util.logging.Logger;
 
 
 public class IntegrationView {
-	
+	//private static final Logger logger = LogManager.getLogger(IntegrationView.class);
 	final static Logger logger=Logger.getLogger(CustomerView.class.getName());
 	
 	
-	
+	//Function to give the all the choices 
 	public static int choices()
 	{
 		//BasicConfigurator.configure(); 
@@ -43,6 +43,7 @@ public class IntegrationView {
 		return sc.nextInt();
 	}*/
 	
+	//To set the login username & password
 	public static boolean validate(String username,String password)
 	{
 		if(username.equalsIgnoreCase("user") && password.equalsIgnoreCase("pass"))
@@ -53,6 +54,7 @@ public class IntegrationView {
 			return false;
 	}
 	
+	//The main method
 	public static void main(String[] args) throws Exception
 	{
 		
