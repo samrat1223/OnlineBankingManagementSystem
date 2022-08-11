@@ -4,16 +4,31 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
+import java.util.logging.Logger;
+
+//import org.apache.log4j.BasicConfigurator;
+//import org.apache.log4j.LogManager;
+//import org.apache.log4j.Logger;
+
+
 
 import com.obms.controller.AccountController;
 import com.obms.model.Account;
 
 public class AccountView {
 	
+	 //private static final Logger logger = LogManager.getLogger(AccountView.class);
+	final static Logger logger=Logger.getLogger(AccountView.class.getName());
+	 
 	public int accountview() throws Exception {
+		
+		
+		
+		
 		AccountController accountctrl = new AccountController();
 		int result;
 		Account account= new Account();
+		
 		
 		long Accnt_No;
 		String Accnt_Type;
@@ -28,19 +43,20 @@ public class AccountView {
 		int choice;
 		boolean ch=true;
 		while(ch){
-		System.out.println("1. Add Record");
-		System.out.println("2. Update Record");
-		System.out.println("3. Delete Record");
-		System.out.println("4. View Records");
-		System.out.println("5. View a Record");
-		System.out.println("0. Exit ");
+		logger.info("1. Add Record");
+		//logger.setAdditivity(false);
+		logger.info("2. Update Record");
+		logger.info("3. Delete Record");
+		logger.info("4. View Records");
+		logger.info("5. View a Record");
+		logger.info("0. Exit ");
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Enter your choice");
+		logger.info("Enter your choice");
 		 choice = sc.nextInt();
 		
 		switch (choice) {
 		case 1:
-			System.out.println("Enter Accnt_No,Accnt_Type,Accnt_Balance,IFSC_Code,Opening_Date,Branch_Name,Branch_Code,Cust_ID,Cust_NomineeName");
+			logger.info("Enter Accnt_No,Accnt_Type,Accnt_Balance,IFSC_Code,Opening_Date,Branch_Name,Branch_Code,Cust_ID,Cust_NomineeName");
 			Accnt_No = sc.nextLong();
 			sc.nextLine();
 			Accnt_Type = sc.next();
@@ -63,13 +79,13 @@ public class AccountView {
 			account = new Account(Accnt_No,Accnt_Type,Accnt_Balance,IFSC_Code,Opening_Date,Branch_Name,Branch_Code,Cust_ID,Cust_NomineeName);
 			result = accountctrl.insertRecord(account);
 			if (result > 0)
-				System.out.println("Record Inserted");
+				logger.info("Record Inserted");
 			else
-				System.out.println("Record not inserted");
+				logger.info("Record not inserted");
 			break;
 			
 		case 2:
-			System.out.println("Enter Accnt_No,Accnt_Type,Accnt_Balance,IFSC_Code,Opening_Date,Branch_Name,Branch_Code,Cust_NomineeName,Cust_ID");
+			logger.info("Enter Accnt_No,Accnt_Type,Accnt_Balance,IFSC_Code,Opening_Date,Branch_Name,Branch_Code,Cust_NomineeName,Cust_ID");
 			Accnt_No = sc.nextLong();
 			sc.nextLine();
 			Accnt_Type = sc.next();
@@ -92,49 +108,49 @@ public class AccountView {
 			account = new Account(Accnt_No,Accnt_Type,Accnt_Balance,IFSC_Code,Opening_Date,Branch_Name,Branch_Code,Cust_ID,Cust_NomineeName);
 			result = accountctrl.updateRecord(account);
 			if (result > 0)
-				System.out.println("Record updated");
+				logger.info("Record updated");
 			else
-				System.out.println("Record not found");
+				logger.info("Record not found");
 			break;
 			
 		case 3:
-			System.out.println("Enter accno");
+			logger.info("Enter accno");
 			Accnt_No = sc.nextLong();
 			result = accountctrl.deleteRecord(Accnt_No);
 			if (result > 0)
-				System.out.println("Record deleted");
+				logger.info("Record deleted");
 			else
-				System.out.println("Record not found");
+				logger.info("Record not found");
 			break;
 			
 		case 4:
 			List<Account> list=accountctrl.getAllRecords();
 			if(list.size()==0)
 			{
-				System.out.println("No records found");
+				logger.info("No records found");
 			}
 			else
 			{
 			for(Account acc : list){
-				System.out.println(acc.getAccnt_No()+"\t"+acc.getAccnt_Type()+" "+acc.getAccnt_Balance()+" "+acc.getIFSC_Code()+" "+
+				logger.info(acc.getAccnt_No()+"\t"+acc.getAccnt_Type()+" "+acc.getAccnt_Balance()+" "+acc.getIFSC_Code()+" "+
 						acc.getOpening_Date()+" "+acc.getBranch_Name()+" "+acc.getBranch_Code()+" "+acc.getCust_ID()+""+acc.getCust_NomineeName());
 			}
 			}
 			break;
 		
 		case 5:
-			System.out.println("Enter accno");
+			logger.info("Enter accno");
 			Accnt_No=sc.nextLong();
 			account=accountctrl.getAccountByAccno(Accnt_No);
-			System.out.println("Account_No = "+account.getAccnt_No());
-			System.out.println("Account_type = "+account.getAccnt_Type());
-			System.out.println("Accnt_Balance = "+account.getAccnt_Balance());
-			System.out.println("IFSC_Code = "+account.getIFSC_Code());
-			System.out.println("Opening_Date = "+account.getOpening_Date());
-			System.out.println("Branch_Name = "+account.getBranch_Name());
-			System.out.println("Branch_Code = "+account.getBranch_Code());
-			System.out.println("Cust_id "+account.getCust_ID());
-			System.out.println("Cust_NomineeName"+account.getCust_NomineeName());
+			logger.info("Account_No = "+account.getAccnt_No());
+			logger.info("Account_type = "+account.getAccnt_Type());
+			logger.info("Accnt_Balance = "+account.getAccnt_Balance());
+			logger.info("IFSC_Code = "+account.getIFSC_Code());
+			logger.info("Opening_Date = "+account.getOpening_Date());
+			logger.info("Branch_Name = "+account.getBranch_Name());
+			logger.info("Branch_Code = "+account.getBranch_Code());
+			logger.info("Cust_id "+account.getCust_ID());
+			logger.info("Cust_NomineeName"+account.getCust_NomineeName());
 			break;
 		
 		case 0: ch=false;

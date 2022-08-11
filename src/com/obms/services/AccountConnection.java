@@ -3,6 +3,7 @@ package com.obms.services;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+//Database Connectivity for Account related operation
 public class AccountConnection {
 	
 	public static Connection getConnection() {

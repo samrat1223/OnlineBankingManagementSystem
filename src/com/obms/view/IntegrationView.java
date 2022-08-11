@@ -1,35 +1,47 @@
 package com.obms.view;
 
+//import org.apache.log4j.BasicConfigurator;
+//import org.apache.log4j.LogManager;
+//import org.apache.log4j.Logger;
+
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.logging.Logger;
 
 
 public class IntegrationView {
 	
+	final static Logger logger=Logger.getLogger(CustomerView.class.getName());
+	
+	
+	
 	public static int choices()
 	{
+		//BasicConfigurator.configure(); 
 			
 		int n;
-		System.out.println("select Your choice from below for accessing a tables");
+		logger.info("select Your choice from below for accessing a tables");
 		Scanner sc= new Scanner(System.in);
-		System.out.println("1. Customer Table");
-		System.out.println("2. Account Table");
-		System.out.println("3. Transaction table");
-		System.out.println("4. Get Account Details from Cust_ID");
-		System.out.println("0  Exit from here");
-		System.out.println("Enter Your choice");
+		logger.info("1. Customer Table");
+		logger.info("2. Account Table");
+		logger.info("3. Transaction table");
+		logger.info("4. Get Account Details from Cust_ID");
+		logger.info("0  Exit from here");
+		logger.info("Enter Your choice");
 		return sc.nextInt();
 	}
 	
-	public static int bank()
+	/*public static int bank()
 	{
+		BasicConfigurator.configure(); 
+		
 		int n;
-		System.out.println("Select role : ");
+		logger.info("Select role : ");
 		Scanner sc = new Scanner(System.in);
-		System.out.println("1. Admin");
-		System.out.println("2. User");
+		logger.info("1. Admin");
+		logger.info("2. User");
 		return sc.nextInt();
-	}
+	}*/
 	
 	public static boolean validate(String username,String password)
 	{
@@ -44,14 +56,17 @@ public class IntegrationView {
 	public static void main(String[] args) throws Exception
 	{
 		
+		//BasicConfigurator.configure();  
+		
+		//logger.setAdditivity(true);
 		
 		Scanner sc=new Scanner(System.in);
 		
 		int val;
 		int choice;
-		System.out.println("Enter username");
+		logger.info("Enter username");
 		String username=sc.nextLine();
-		System.out.println("Enter password");
+		logger.info("Enter password");
 		String password=sc.nextLine();
 		if(validate(username,password))
 		{

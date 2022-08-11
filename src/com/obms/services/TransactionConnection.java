@@ -3,21 +3,23 @@ package com.obms.services;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+//Database connection to perform transaction table operations
 public class TransactionConnection {
-	
+
 	public static Connection getConnection() {
-		Connection con=null;
+		Connection con = null;
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 
-		con=DriverManager.getConnection("jdbc:mysql://localhost:3306/bankingmanagementsystem","root","password");
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/bankingmanagementsystem", "root",
+					"password");
 		} catch (Exception e) {
-			
+
 			e.printStackTrace();
 		}
-		
+
 		return con;
-		
+
 	}
 
 }

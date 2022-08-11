@@ -1,16 +1,27 @@
 package com.obms.view;
 
+//import org.apache.log4j.BasicConfigurator;
+//import org.apache.log4j.LogManager;
+//import org.apache.log4j.Logger;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
+import java.util.logging.Logger;
 
 import com.obms.controller.CustomerController;
 import com.obms.model.Customer;
 
 public class CustomerView {
 	
+	final static Logger logger=Logger.getLogger(CustomerView.class.getName());
+	
+	
 	public static int customerview() throws Exception {
+		
+		
+		
         CustomerController customerctrl = new CustomerController();
         int result;
        Customer customer= new Customer();
@@ -33,18 +44,18 @@ public class CustomerView {
         int choice;
         boolean ch=true;
 	while(ch){
-            System.out.println("1. Add Record");
-            System.out.println("2. Update Record");
-            System.out.println("3. Delete Record");
-            System.out.println("4. View Records");
-            System.out.println("5. View a Record");
-            System.out.println("0. Exit ");
+		logger.info("1. Add Record");
+		logger.info("2. Update Record");
+		logger.info("3. Delete Record");
+		logger.info("4. View Records");
+		logger.info("5. View a Record");
+		logger.info("0. Exit ");
             Scanner sc = new Scanner(System.in);
-            System.out.println("Enter your choice");
+            logger.info("Enter your choice");
             choice = sc.nextInt();
             switch (choice) {
     		case 1:
-    			System.out.println("Enter the Cust_ID,Cust_Name,Cust_Aadharno,Cust_Address,Cust_Panno,Cust_Email,Cust_Password,Cust_MobileNo,Cust_PinCode,Cust_State,User_Name,Cust_DOB,Accnt_No,Cust_NomineeName");
+    			logger.info("Enter the Cust_ID,Cust_Name,Cust_Aadharno,Cust_Address,Cust_Panno,Cust_Email,Cust_Password,Cust_MobileNo,Cust_PinCode,Cust_State,User_Name,Cust_DOB,Accnt_No,Cust_NomineeName");
     			Cust_ID= sc.nextInt();
     			sc.nextLine();
     			Cust_Name= sc.next();
@@ -79,13 +90,13 @@ public class CustomerView {
     			 customer= new Customer(Cust_ID,Cust_Address,Cust_Name,Cust_Password,Cust_Aadharno,Cust_Panno,Cust_Email,Cust_MobileNo,Cust_PinCode,Cust_State,User_Name,Cust_NomineeName,Cust_DOB,Accnt_No);
     			result = customerctrl.insertRecord(customer);
     			if (result > 0)
-    				System.out.println("Record Inserted");
+    				logger.info("Record Inserted");
     			else
-    				System.out.println("Record not inserted");
+    				logger.info("Record not inserted");
     			break;
     			
     		case 2:
-    			System.out.println("Enter the Cust_ID,Cust_Address,Cust_Name,Cust_Password,Cust_Aadharno,Cust_Panno,Cust_Email,Cust_MobileNo,Cust_PinCode,Cust_State,User_Name,Cust_NomineeName,Cust_DOB,Accnt_No");
+    			logger.info("Enter the Cust_ID,Cust_Address,Cust_Name,Cust_Password,Cust_Aadharno,Cust_Panno,Cust_Email,Cust_MobileNo,Cust_PinCode,Cust_State,User_Name,Cust_NomineeName,Cust_DOB,Accnt_No");
     			Cust_ID= sc.nextInt();
     			sc.nextLine();
     			Cust_Address= sc.next();
@@ -114,19 +125,19 @@ public class CustomerView {
     			customer= new Customer(Cust_ID,Cust_Address,Cust_Name,Cust_Password,Cust_Aadharno,Cust_Panno,Cust_Email,Cust_MobileNo,Cust_PinCode,Cust_State,User_Name,Cust_NomineeName,Cust_DOB,Accnt_No);
     			result = customerctrl.updateRecord(customer);
     			if (result > 0)
-    				System.out.println("Record updated");
+    				logger.info("Record updated");
     			else
-    				System.out.println("Record not found");
+    				logger.info("Record not found");
     			break;
 
 		case 3:
-			System.out.println("Enter the Cust_ID");
+			logger.info("Enter the Cust_ID");
 			Cust_ID= sc.nextInt();
 			result = customerctrl.deleteRecord(Cust_ID);
 			if (result > 0)
-				System.out.println("Record deleted");
+				logger.info("Record deleted");
 			else
-				System.out.println("Record not found");
+				logger.info("Record not found");
 			break;
 			
 		case 4:
@@ -134,12 +145,12 @@ public class CustomerView {
 			
 		if(list.size()==0)
 			{
-				System.out.println("No records found");
+			logger.info("No records found");
 			}
 			else 
 			{
 			for(Customer cus : list){
-				System.out.println(cus.getCust_ID()+"\t"+cus.getCust_Address()+"\t"+cus.getCust_Name()+"\t"+cus.getCust_Password()+"\t"+cus.getCust_Aadharno()+"\t"+cus.getCust_Email()+"\t"+cus.getCust_MobileNo()+"\t"+
+				logger.info(cus.getCust_ID()+"\t"+cus.getCust_Address()+"\t"+cus.getCust_Name()+"\t"+cus.getCust_Password()+"\t"+cus.getCust_Aadharno()+"\t"+cus.getCust_Email()+"\t"+cus.getCust_MobileNo()+"\t"+
 						cus.getCust_PinCode()+"\t"+cus.getCust_State()+"\t"+cus.getUser_Name()+"\t"+cus.getCust_NomineeName()+"\t"+cus.getCust_DOB()+"\t"+
 						cus.getAccnt_No());
 			}
@@ -147,23 +158,23 @@ public class CustomerView {
 		break;
 		
 		case 5:
-			System.out.println("Enter Cust_ID");
+			logger.info("Enter Cust_ID");
 			Cust_ID=sc.nextInt();
 			customer=customerctrl.getCustomerByCust_ID(Cust_ID);
-			System.out.println("Cust_ID="+customer.getCust_ID());
-			System.out.println("Cust_Address="+customer.getCust_Address());
-			System.out.println("Cust_Name="+customer.getCust_Name());
-			System.out.println("Cust_Password="+customer.getCust_Password());
-			System.out.println("Cust_AadharNo="+customer.getCust_Aadharno());
-			System.out.println("Cust_Panno="+customer.getCust_Panno());
-			System.out.println("Cust_Email="+customer.getCust_Email());
-			System.out.println("Cust_PhoneNo="+customer.getCust_MobileNo());
-			System.out.println("Cust_PinCode="+customer.getCust_PinCode());
-			System.out.println("Cust_State="+customer.getCust_State());
-			System.out.println("Cust Name="+customer.getUser_Name());
-			System.out.println("Cust_Nominee Name="+customer.getCust_NomineeName());
-			System.out.println("Cust DOB="+customer.getUser_Name());
-			System.out.println("Cust Accnt_No="+customer.getAccnt_No());
+			logger.info("Cust_ID="+customer.getCust_ID());
+			logger.info("Cust_Address="+customer.getCust_Address());
+			logger.info("Cust_Name="+customer.getCust_Name());
+			logger.info("Cust_Password="+customer.getCust_Password());
+			logger.info("Cust_AadharNo="+customer.getCust_Aadharno());
+			logger.info("Cust_Panno="+customer.getCust_Panno());
+			logger.info("Cust_Email="+customer.getCust_Email());
+			logger.info("Cust_PhoneNo="+customer.getCust_MobileNo());
+			logger.info("Cust_PinCode="+customer.getCust_PinCode());
+			logger.info("Cust_State="+customer.getCust_State());
+			logger.info("Cust Name="+customer.getUser_Name());
+			logger.info("Cust_Nominee Name="+customer.getCust_NomineeName());
+			logger.info("Cust DOB="+customer.getUser_Name());
+			logger.info("Cust Accnt_No="+customer.getAccnt_No());
 			
 			break;
 			case 0: 
