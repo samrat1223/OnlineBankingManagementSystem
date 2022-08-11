@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.obms.model.Transaction;
-import com.obms.services.TransactionConnection;
+import com.obms.services.DatabaseConnection;
 
 //Service class to provide implementation about the crud operation
 public class TransactionService implements TransactionCrud {
@@ -18,7 +18,7 @@ public class TransactionService implements TransactionCrud {
 	public int insertRecord(Transaction transaction) {
 		int result = 0;
 		try {
-			Connection con = TransactionConnection.getConnection();
+			Connection con = DatabaseConnection.getConnection();
 			// java.sql.Date transac_date=new
 			// java.sql.Date(transaction.getTransac_Date().getTime());
 
@@ -47,7 +47,7 @@ public class TransactionService implements TransactionCrud {
 	public int updateRecord(Transaction transaction) {
 		int result = 0;
 		try {
-			Connection con = TransactionConnection.getConnection();
+			Connection con = DatabaseConnection.getConnection();
 			// java.sql.Date transac_date=new
 			// java.sql.Date(transaction.getTransac_Date().getTime());
 
@@ -78,7 +78,7 @@ public class TransactionService implements TransactionCrud {
 
 		int result = 0;
 		try {
-			Connection con = TransactionConnection.getConnection();
+			Connection con = DatabaseConnection.getConnection();
 			PreparedStatement ps = con.prepareStatement("delete from transaction where Transaction_Id=?");
 
 			ps.setInt(1, Transaction_Id);
@@ -97,7 +97,7 @@ public class TransactionService implements TransactionCrud {
 
 		ArrayList<Transaction> list = new ArrayList<>();
 		try {
-			Connection con = TransactionConnection.getConnection();
+			Connection con = DatabaseConnection.getConnection();
 
 			// To get all Records
 			Statement stmt = con.createStatement();
@@ -125,7 +125,7 @@ public class TransactionService implements TransactionCrud {
 	public Transaction getTransactionByTransaction_Id(int Transaction_Id) {
 		Transaction transaction = null;
 		try {
-			Connection con = TransactionConnection.getConnection();
+			Connection con = DatabaseConnection.getConnection();
 			PreparedStatement ps = con.prepareStatement("Select * from transaction where Transaction_Id=?");
 			ps.setInt(1, Transaction_Id);
 			ResultSet rs = ps.executeQuery();

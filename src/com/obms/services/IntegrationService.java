@@ -5,14 +5,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-import com.obms.services.AccountConnection;
+import com.obms.services.DatabaseConnection;
 
 //Service class to implement join related operations
 public class IntegrationService {
 	public String getAccount_Details_By_Cust_Id(int s) {
 		String res1 = "null";
 		try {
-			Connection con = AccountConnection.getConnection();
+			Connection con = DatabaseConnection.getConnection();
 			Statement stmt = con.createStatement();
 			PreparedStatement ps = con.prepareStatement(
 					"select * from account inner join customer on account.Cust_ID=customer.Cust_ID where Cust_ID=?");
