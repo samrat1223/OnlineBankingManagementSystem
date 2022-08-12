@@ -70,12 +70,12 @@ class CustomerTestCase {
 
 	
 	// Test Case for deleting a record
-	/*@Test
+	@Test
 	void testDeleteRecord() {
 		customerservice.deleteRecord(4998);
 		Customer recordFromDb = customerservice.getCustomerByCust_ID(4998);
-		assertEquals("null",recordFromDb.getCust_ID(), "Customer should be Null");
-	}*/
+		assertNull(recordFromDb, "Customer should be Null");
+	}
 
 	// Test Case for fetching all the records
 	@Test

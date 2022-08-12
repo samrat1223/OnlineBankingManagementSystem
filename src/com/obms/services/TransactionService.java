@@ -13,7 +13,7 @@ import com.obms.services.DatabaseConnection;
 //Service class to provide implementation about the crud operation
 public class TransactionService implements TransactionCrud {
 
-	// Function to insert a recrd
+	// Function to insert a record
 	@Override
 	public int insertRecord(Transaction transaction) {
 		int result = 0;

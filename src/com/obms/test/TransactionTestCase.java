@@ -14,10 +14,13 @@ import com.obms.model.Transaction;
 import com.obms.services.CustomerService;
 import com.obms.services.TransactionService;
 
+//Test Class for testing methods of Transaction Service class
 class TransactionTestCase {
 
+	//Invoking transactionservice
 	private static TransactionService transactionservice = new TransactionService();
 	
+	// Test Case insert a record
 	@Test
 	void testInsertRecord() {
 		Transaction transaction = new Transaction();
@@ -36,6 +39,7 @@ class TransactionTestCase {
 	}
 
 	
+	// Test Case for updating a record
 	@Test
 	void testUpdateRecord() {
 		Transaction transaction = new Transaction();
@@ -54,20 +58,23 @@ class TransactionTestCase {
 		assertEquals("Rabi", recordFromDb.getSender(), "Updated money sender state must be equal");
 	}
 
-	/*
+	// Test Case for deleting a record
 	@Test
 	void testDeleteRecord() {
-		fail("Not yet implemented");
+		transactionservice.deleteRecord(47524);
+		Transaction recordFromDb = transactionservice.getTransactionByTransaction_Id(47524);
+		assertNull(recordFromDb, "Customer should be Null");
 	}
-	*/
+	
 
+	// Test Case for fetching all the records
 	@Test
 	void testGetAllRecords() {
 		List<Transaction> transaction = transactionservice.getAllRecords();
 		Assert.assertEquals(3, transaction.size());
 	}
 
-	
+	// Test Case for fetching a particular record
 	@Test
 	void testGetTransactionByTransaction_Id() {
 		Transaction transaction = new Transaction();

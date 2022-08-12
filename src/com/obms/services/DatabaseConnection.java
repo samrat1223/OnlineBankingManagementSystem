@@ -7,10 +7,10 @@ import java.sql.DriverManager;
 public class DatabaseConnection {
 	public static Connection getConnection() {
 		Connection con=null;
-		try {
+		try { 
 			Class.forName("com.mysql.cj.jdbc.Driver");
 
-		con=DriverManager.getConnection("jdbc:mysql://localhost:3306/bankingmanagementsystem","root","Differentiation@1124");
+		con=DriverManager.getConnection("jdbc:mysql://localhost:3306/bankingmanagementsystem","root","password");
 		} catch (Exception e) {
 			
 			e.printStackTrace();

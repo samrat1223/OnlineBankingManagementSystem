@@ -16,6 +16,7 @@ class AccountTestCase {
 	//Invoking the service for account class
 	private static AccountService accountservice = new AccountService();
 
+	
 	// Test Case for inserting a record
 	@Test
 	void testInsertRecord() {
@@ -59,11 +60,12 @@ class AccountTestCase {
 	// TestCase for deleting a record
 	@Test
 	void testDeleteRecord() {
-		accountservice.deleteRecord(8556);
-		Account recordFromDb1 = accountservice.getAccountByAccno(8556);
-		assertNull(recordFromDb1.getAccnt_No(), "Account should be Null");
+		accountservice.deleteRecord(8557);
+		Account recordFromDb1 = accountservice.getAccountByAccno(8557);
+		assertNull(recordFromDb1, "Account should be Null");
 	}
 
+	
 	// TestCase for getting all records from the account table
 
 	@Test
